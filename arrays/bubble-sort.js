@@ -4,13 +4,13 @@ const length = myArray.length
 for (let i = (length - 1); i > 0; i--) {
 
     let swapped = false
-    for (let i = 0; i < (length - 1); i++) {
-        const a = myArray[i]
-        const b = myArray[i + 1]
+    for (let j = 0; j < (length - 1); j++) {
+        const a = myArray[j]
+        const b = myArray[j + 1]
         const rightOrder = a < b
         if (!rightOrder) {
-            myArray[i] = b
-            myArray[i + 1] = a
+            myArray[j] = b
+            myArray[j + 1] = a
             swapped = true
         }
     }

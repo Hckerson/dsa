@@ -2,19 +2,18 @@ const myArray = [64, 34, 25, 12, 22, 11, 90, 5]
 const length = myArray.length
 
 
-for (let i = (length - 1); i < 0; i--) {
+for (let i = 0; i < (length - 1); i++) {
 
-    let sorted = false
-    for (let i = (length - 1); i < 0; i--) {
-        const a = myArray[i]
-        const b = myArray[i - 1]
-        if (a < b) {
-            myArray[i] = a
-            myArray[i - 1] = b
-            sorted = true
+    let smallestNumberIndex = i
+    for (let j = (i + 1); j < length; j++) {
+
+        if (myArray[j] < myArray[smallestNumberIndex]) {
+            smallestNumberIndex = j
         }
     }
-    if (!sorted) break
+
+    [myArray[i], myArray[smallestNumberIndex]] = [myArray[smallestNumberIndex], myArray[i]]
+
 }
 
 console.log(myArray)
