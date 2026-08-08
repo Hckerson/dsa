@@ -1,16 +1,18 @@
-const myArray = [64, 34, 25, 12, 22, 11, 90, 5]
-const length = myArray.length
+const myArray = [64, 34, 25, 12, 22, 11, 90, 5];
+const length = myArray.length;
 
-for (i = 0; i < length; i++) {
+for (let i = 0; i < length - 1; i++) {
+	let currentlyTrackedIndex = i + 1;
 
-    let currentlyTrackingIndex = (i + 1)
-    for (j = i; j >= 0; j--) {
-        if (myArray[currentlyTrackingIndex] < myArray[j]) {
-            [myArray[currentlyTrackingIndex], myArray[j]] = [myArray[j], myArray[currentlyTrackingIndex]]
-            currentlyTrackingIndex = j
-        }
-    }
-
+	for (let j = i; j >= 0; j--) {
+		if (myArray[currentlyTrackedIndex] < myArray[j]) {
+			[myArray[currentlyTrackedIndex], myArray[j]] = [
+				myArray[j],
+				myArray[currentlyTrackedIndex],
+			];
+			currentlyTrackedIndex = j;
+		}
+	}
 }
 
-console.log(myArray)
+console.log(myArray);

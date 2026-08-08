@@ -2,16 +2,19 @@ const myArray = [64, 34, 25, 12, 22, 11, 90, 5]
 const length = myArray.length
 
 
-for (i = 0; i < length; i++) {
+for (let i = 0; i < length - 1; i++) {
+    let currentlyTrackedIndex = i;
 
-    let smallNumberIndex = i
-    for (j = (i + 1); j < length; j++) {
-        if (myArray[smallNumberIndex] > myArray[j]) {
-            smallNumberIndex = j
+    for (let j = (i + 1); j <= length - 1; j++) {
+        if (myArray[currentlyTrackedIndex] > myArray[j]) {
+            currentlyTrackedIndex = j;
         }
     }
 
-    [myArray[i], myArray[smallNumberIndex]] = [myArray[smallNumberIndex], myArray[i]]
+    [myArray[currentlyTrackedIndex], myArray[i]] = [
+        myArray[i],
+        myArray[currentlyTrackedIndex],
+    ];
 }
 
 console.log(myArray)
