@@ -5,10 +5,10 @@ for (let i = 0; i < length - 1; i++) {
 	let currentlyTrackedIndex = i + 1;
 
 	for (let j = i; j >= 0; j--) {
-		if (myArray[currentlyTrackedIndex] < myArray[j]) {
-			[myArray[currentlyTrackedIndex], myArray[j]] = [
-				myArray[j],
+		if (myArray[j] > myArray[currentlyTrackedIndex]) {
+			[myArray[j], myArray[currentlyTrackedIndex]] = [
 				myArray[currentlyTrackedIndex],
+				myArray[j],
 			];
 			currentlyTrackedIndex = j;
 		}
