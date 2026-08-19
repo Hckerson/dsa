@@ -1,18 +1,25 @@
-const myArray = [64, 34, 25, 12, 22, 11, 90, 5, 25, 12, 64]
-const length = myArray.length
+const myArray = [64, 34, 25, 12, 22, 11, 90, 5, 25, 12, 64];
+const length = myArray.length;
 
+const countSort = (arr) => {
+	const sorted = new Map();
 
-const storex = new Map()
-const arrangedArray = []
-for (let i = 0; i < length; i++) {
-    const number = myArray[i]
-    storex.set(number, storex.get(number) === undefined ? 1 : (storex.get(number) + 1))
-}
+	for (let i = 0; i <= length - 1; i++) {
+		sorted.set(
+			arr[i],
+			sorted.get(arr[i]) === undefined ? 1 : sorted.get(arr[i]) + 1,
+		);
+	}
 
-Array.from(storex).sort(([a], [b]) => a - b).map(([num, count]) => {
-    for (let i = 0; i < count; i++) {
-        arrangedArray.push(num)
-    }
-})
+	arr.length = 0;
 
-console.log(arrangedArray)
+	Array.from(sorted)
+		.sort(([a], [b]) => a - b)
+		.forEach(([a, b]) => {
+			Array(b).fill().forEach(() => arr.push(a));
+		});
+
+	console.log(myArray);
+};
+
+countSort(myArray);

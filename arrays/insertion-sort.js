@@ -10,6 +10,7 @@ for (let i = 0; i < length - 1; i++) {
 				myArray[currentlyTrackedIndex],
 				myArray[j],
 			];
+			
 			currentlyTrackedIndex = j;
 		}
 	}

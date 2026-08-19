@@ -1,7 +1,7 @@
 const myArray = [64, 34, 25, 12, 22, 11, 90, 5];
 const length = myArray.length;
 
-for (let i = length - 1; i > 0; i++) {
+for (let i = length - 1; i > 0; i--) {
 	let swapped = false;
 
 	for (let j = 0; j < i; j++) {
