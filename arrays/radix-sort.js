@@ -9,24 +9,15 @@ function extractDigit(num, index) {
 }
 
 for (let i = 0; i < length; i++) {
-
 	for (let j = 0; j < myArray.length; j++) {
 		const digit = extractDigit(myArray[j], i);
 		if (!digit) return;
 		radixSortArray[digit].push(myArray[j]);
 	}
 
-console.log(myArray)
-
-
+	console.log(myArray);
 	myArray.length = 0;
-
-	myArray.push(
-		...radixSortArray.flatMap((bucket) => bucket)
-	);
-    
+	myArray.push(...radixSortArray.flatMap((bucket) => bucket));
 }
 
-console.log(myArray)
-
-
+console.log(myArray);
