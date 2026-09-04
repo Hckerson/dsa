@@ -1,0 +1,13 @@
+{
+    "name": "dsa",
+    "version": "1.0.0",
+    "description": "Data structures and algorithms practice in JavaScript.",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "format": "prettier --write ."
+    },
+    "devDependencies": {
+        "prettier": "^3.9.5"
+    }
+}
