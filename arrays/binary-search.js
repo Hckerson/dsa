@@ -1,23 +1,24 @@
 const myArray = [64, 2, 25, 12, 22, 11, 90];
-const length = myArray.length;
 
 function binarySearch(arr, num) {
-    const sortedArray = arr.sort();
+    const sortedArray = [...arr].sort((a, b) => a - b);
     let left = 0;
-    let right = length;
+    let right = sortedArray.length;
 
-    let mid = Math.floor((right - left) / 2);
+    while (left < right) {
+        const mid = left + Math.floor((right - left) / 2);
 
-    while (num != mid) {
-        if (sortedArray[mid] > num) {
+        if (sortedArray[mid] === num) {
+            return mid;
+        } else if (sortedArray[mid] > num) {
             right = mid;
         } else {
-            left = mid;
+            left = mid + 1;
         }
-        mid = Math.floor((right - left) / 2);
     }
-    return mid;
+
+    return -1;
 }
 
-const x = binarySearch(myArray, 2);
+const x = binarySearch(myArray, 64);
 console.log(x);
