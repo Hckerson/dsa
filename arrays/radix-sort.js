@@ -1,32 +1,29 @@
-const myArray = [170, 45, 75, 90, 802, 24, 2, 66];
-
+const myArray = [170, 45, 75, 2, 802, 24, 2, 66];
 const radixSortArray = [[], [], [], [], [], [], [], [], [], []];
 
-const length = Math.max(...myArray).toString().length;
-
-function extractDigit(num, index) {
-	return String(num).split("").reverse()[index] || null;
+function extractDigit(digit, idx) {
+    return Number(String(digit).split("").reverse()[idx]) || 0;
 }
 
-for (let i = 0; i < length; i++) {
+const max_value = Math.max(...myArray);
+let exp = 1;
+let trackedIndex = 1;
 
-	for (let j = 0; j < myArray.length; j++) {
-		const digit = extractDigit(myArray[j], i);
-		if (!digit) return;
-		radixSortArray[digit].push(myArray[j]);
-	}
+while (Math.floor(max_value / exp) > 0) {
+    for (let i = 0; i < myArray.length; i++) {
+        radixSortArray[extractDigit(myArray[i], trackedIndex)].push(myArray[i]);
+    }
 
-console.log(myArray)
+    myArray.length = 0;
 
-
-	myArray.length = 0;
-
-	myArray.push(
-		...radixSortArray.flatMap((bucket) => bucket)
-	);
-    
+    for (let j = 0; j < radixSortArray.length; j++) {
+        for (let k = 0; k < radixSortArray[j].length; k++) {
+            myArray.push(radixSortArray[j][k]);
+        }
+        radixSortArray[j].length = 0;
+    }
+    exp *= 10;
+    trackedIndex += 1;
 }
 
-console.log(myArray)
-
-
+console.log(myArray);
