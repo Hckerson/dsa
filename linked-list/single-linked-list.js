@@ -41,6 +41,10 @@ function deleteSpecificNode(head, candidate) {
     return head
 }
 
+function insertNodeAtPosition() {
+    
+}
+
 let node1 = new Node(7);
 let node2 = new Node(11);
 let node3 = new Node(3);
