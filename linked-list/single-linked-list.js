@@ -14,18 +14,20 @@ function traverseAndPrint(node) {
 }
 
 function findLowestValue(head) {
-    let minVale = head.data;
+    let minValue = head.data;
+
     let currentNode = head.next;
     while (currentNode) {
-        if (minVale > currentNode.data) {
-            minVale = currentNode.data;
-        }
+        const value = currentNode.data;
+        if (value < minValue) minValue = value;
         currentNode = currentNode.next;
     }
-    return minVale;
+
+    console.log(`Lowest  is Node with the value of ${minValue}`);
 }
 
 function deleteSpecificNode(head, candidate) {
+    if (head === candidate) return head.next;
     if (head === candidate) return head.next;
 
     let currentNode = head;
@@ -34,6 +36,7 @@ function deleteSpecificNode(head, candidate) {
     }
 
     if (!currentNode.next) {
+        return head;
         return head;
     }
 
