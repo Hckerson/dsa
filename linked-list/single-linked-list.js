@@ -60,8 +60,7 @@ console.log("Before deletion");
 traverseAndPrint(node1);
 findLowestValue(node1);
 
-node1 = deleteSpecificNode(node1, node3)
-console.log(`New ${node1.data}`)
+node1 = deleteSpecificNode(node1, node3);
 
-console.log("After deletion")
-traverseAndPrint(node1)
+console.log("After deletion");
+traverseAndPrint(node1);
