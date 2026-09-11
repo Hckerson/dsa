@@ -14,36 +14,36 @@ function traverseAndPrint(node) {
 }
 
 function findLowestValue(head) {
-    let minVale = head.data;
+    let minValue = head.data;
+
     let currentNode = head.next;
     while (currentNode) {
-        if (minVale > currentNode.data) {
-            minVale = currentNode.data;
-        }
+        const value = currentNode.data;
+        if (value < minValue) minValue = value;
         currentNode = currentNode.next;
     }
-    return minVale;
+
+    console.log(`Lowest  is Node with the value of ${minValue}`);
 }
 
 function deleteSpecificNode(head, candidate) {
-    if (head === candidate) return head.next
+    if (head === candidate) return head.next;
 
-    let currentNode = head
-    if (currentNode.next && currentNode.next !== candidate) {
-        currentNode = currentNode.next
+    let currentNode = head.next;
+    while (currentNode.next && currentNode.next !== candidate) {
+        currentNode = currentNode.next;
     }
 
     if (!currentNode.next) {
-        return head
+        return head;
     }
 
-    currentNode.next = currentNode.next.next
-    return head
+    currentNode.next = currentNode.next.next;
+
+    return head;
 }
 
-function insertNodeAtPosition() {
-    
-}
+function insertNodeAtPosition() {}
 
 let node1 = new Node(7);
 let node2 = new Node(11);
@@ -56,10 +56,11 @@ node2.next = node3;
 node3.next = node4;
 node4.next = node5;
 
-console.log("Before deletion")
-traverseAndPrint(node1)
+console.log("Before deletion");
+traverseAndPrint(node1);
+findLowestValue(node1);
 
-node1 = deleteSpecificNode(node1, node1)
+node1 = deleteSpecificNode(node1, node3)
 console.log(`New ${node1.data}`)
 
 console.log("After deletion")
