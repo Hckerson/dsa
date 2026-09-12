@@ -28,7 +28,6 @@ function findLowestValue(head) {
 
 function deleteSpecificNode(head, candidate) {
     if (head === candidate) return head.next;
-    if (head === candidate) return head.next;
 
     let currentNode = head;
     while (currentNode.next && currentNode.next !== candidate) {
@@ -36,7 +35,6 @@ function deleteSpecificNode(head, candidate) {
     }
 
     if (!currentNode.next) {
-        return head;
         return head;
     }
 
