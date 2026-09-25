@@ -4,55 +4,49 @@ class SimpleHashMap {
         this.buckets = Array.from({ length: count }, () => []);
     }
 
-    getBucket = (key) => {
-        const index = this.hashFunction(key);
-        const bucket = this.buckets[index];
-        return bucket;
-    };
-
     hashFunction = (value) => {
-        let sumOfChar = 0;
+        let sum = 0;
 
-        for (const char of value) {
-            const digit = Number(char);
-            sumOfChar += Number.isInteger(digit) ? digit : 0;
-        }
+        String(value)
+            .split("")
+            .forEach((c) => {
+                const valid = Number.isInteger(Number(c));
+                sum += valid ? Number(c) : 0;
+            });
 
-        return sumOfChar % this.count;
+        return sum % this.count;
     };
 
-    put = (key, value) => {
-        const bucket = this.getBucket(key);
+    getBucket = (key) => {
+        return this.buckets[this.hashFunction(key)];
+    };
 
-        for (let idx = 0; idx < bucket.length; idx++) {
-            if (bucket[idx].key === key) {
-                bucket[idx] = { key, value };
+    put = (newKey, newValue) => {
+        const bucket = this.getBucket(newKey);
+
+        for (const entry of bucket) {
+            if (entry.key === newKey) {
+                entry.value = newValue;
                 return;
             }
         }
 
-        bucket.push({ key, value });
+        bucket.push({ key: newKey, value: newValue });
     };
 
     get = (key) => {
         const bucket = this.getBucket(key);
-
-        for (const { key: k, value: v } of bucket) {
-            if (k === key) return v;
+        for (const { key: oldKey, value } of bucket) {
+            if (key === oldKey) return value;
         }
-
         return null;
     };
 
     remove = (key) => {
-        const bucket = this.getBucket(key);
-
-        for (let idx = 0; idx < bucket.length; idx++) {
-            if (bucket[idx].key === key) {
-                bucket.splice(idx, 1);
-                return;
-            }
-        }
+        const index = this.hashFunction(key);
+        this.buckets[index] = this.buckets[index].filter(
+            ({ key: oldKey }) => oldKey !== key,
+        );
     };
 
     printMap = () => {
@@ -60,7 +54,9 @@ class SimpleHashMap {
             console.log(
                 `Bucket ${idx} with ${
                     bucket.length
-                        ? bucket.map(({ key, value }) => `${key}: ${value}`).join(", ")
+                        ? bucket
+                              .map(({ key, value }) => `${key}: ${value}`)
+                              .join(", ")
                         : "no element"
                 }`,
             );
@@ -87,3 +83,7 @@ console.log("Updating the name for '123-4570' to 'James'");
 hashMap.put("123-4570", "James");
 
 console.log("Name associated with '123-4570':", hashMap.get("123-4570"));
+
+hashMap.remove("123-4571");
+
+hashMap.printMap();
