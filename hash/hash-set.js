@@ -5,30 +5,36 @@ class SimpleHashSet {
     }
 
     hashFunction = (value) => {
-        let sumOfChar = 0;
+        let sum = 0;
 
-        for (const char of String(value)) {
-            sumOfChar += char.codePointAt(0);
-        }
+        String(value)
+            .split("")
+            .forEach((char) => {
+                sum += char.codePointAt();
+            });
 
-        return sumOfChar % this.count;
+        return sum % this.count;
+    };
+
+    getBucket = (value) => {
+        return this.buckets[this.hashFunction(value)];
     };
 
     contains = (value) => {
-        const index = this.hashFunction(value);
-        return this.buckets[index].some((id) => id === value);
+        const content = this.getBucket(value);
+
+        return content.includes(value);
     };
 
     add = (value) => {
-        const index = this.hashFunction(value);
-        const bucket = this.buckets[index];
-        bucket.includes(value) ? null : bucket.push(value);
+        const content = this.getBucket(value);
+        !content.includes(value) && content.push(value);
     };
 
     remove = (value) => {
-        const index = this.hashFunction(value);
-        const bucket = this.buckets[index];
-        bucket.includes(value) ? bucket.splice(bucket.indexOf(value), 1) : null;
+        const bucket = this.buckets[this.hashFunction(value)];
+        const index = bucket.indexOf(value);
+        index !== -1 && bucket.splice(index, 1);
     };
 
     printSet = () => {
